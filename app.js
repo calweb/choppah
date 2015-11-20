@@ -4,7 +4,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var Drone = require('rolling-spider');
 var ACTIVE = true;
-var STEPS = 2;
+var STEPS = 5;
 
 var choppah = new Drone(process.env.UUID);
 app.set('port', process.env.PORT || 3000);
@@ -42,12 +42,12 @@ io.on('connection', function (socket) {
   });
   socket.on('choppah:forward', function () {
     console.log('going forward');
-    choppah.forward({ steps: 50 });
+    choppah.forward({ steps: 20 });
     cooldown();
   });
   socket.on('choppah:backward', function () {
     console.log('going backward');
-    choppah.backward({ steps: 50 });
+    choppah.backward({ steps: 20 });
          cooldown();
   });
   socket.on('choppah:flip', function () {
