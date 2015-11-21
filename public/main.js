@@ -6,7 +6,7 @@ var commands = {
     },
     'go *action': function (action) {
       console.log("action: ", action);
-      socket.emit('choppah:' + action, {msg: action});
+      socket.emit('choppah', {action: action});
     }
   };
 
