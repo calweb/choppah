@@ -13,6 +13,7 @@
     "browserify": "^12.0.1"
   },
   "scripts": {
+    "postinstall": "cd public && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle": "./node_modules/.bin/browserify public/main.js -o public/bundle.js",
     "start": "npm run bundle && node app.js"
