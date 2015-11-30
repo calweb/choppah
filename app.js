@@ -3,9 +3,8 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var Drone = require('rolling-spider');
-var d = require('./droneControl');
-var ACTIVE = true;
-var STEPS = 5;
+var droneControl = require('./droneControl');
+
 
 var choppah = new Drone(process.env.UUID);
 app.set('port', process.env.PORT || 3000);
@@ -22,9 +21,9 @@ server.listen(app.get('port'), function () {
 io.on('connection', function (socket) {
   socket.on('choppah', function (data) {
     console.log('choppha!', data.action);
-    d(choppah, data.action);
+    droneControl(choppah, data.action);
   });
   socket.on('choppah:launch', function () {
-    d(choppah, 'launch')
+    droneControl(choppah, 'launch')
   })
 });

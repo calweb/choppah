@@ -9,5 +9,4 @@ To run the application, just:
 ```
   npm install
   npm run start
-
 ```
